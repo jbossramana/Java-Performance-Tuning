@@ -1,0 +1,54 @@
+Ordinary Object Pointers (OOPs)
+
+The HotSpot JVM uses a data structure called Ordinary Object Pointers (OOPS) to represent pointers 
+to objects. All pointers (both objects and arrays) in the JVM are based on a special data structure 
+called oopDesc. Each oopDesc describes the pointer with the following information:
+
+One mark word
+One, possibly compressed, klass word
+* Klass is the internal representation of a Java class
+
+The mark word describes the object header. The HotSpot JVM uses this word to store identity hashcode, 
+biased locking pattern, locking information, and GC metadata. 
+
+The klass word encapsulates the language-level class information such as class name, its modifiers, 
+superclass info, and so on.
+
+For normal objects in Java, represented as instanceOop, the object header consists of mark and klass words 
+plus possible alignment paddings. After the object header, there may be zero or more references to instance 
+fields. So, that's at least 16 bytes in 64-bit architectures because of 8 bytes of the mark, 4 bytes of klass, 
+and another 4 bytes for padding.
+
+For arrays, represented as arrayOop, the object header contains a 4-byte array length in addition to mark, 
+klass, and paddings. Again, that would be at least 16 bytes because of 8 bytes of the mark, 4 bytes of klass, 
+and another 4 bytes for the array length.
+
+
+
+============================================================
+To inspect the memory layout of objects in the JVM,  we can use the Java Object Layout (JOL) 
+
+<dependency>
+    <groupId>org.openjdk.jol</groupId>
+    <artifactId>jol-core</artifactId>
+    <version>0.10</version>
+</dependency>
+============================================================
+
+OFFSET  SIZE   TYPE DESCRIPTION                               VALUE
+      0    12        (object header)
+      
+      As shown above, the object header is 12 bytes, including 8 bytes of the mark and 4 bytes of klass
+
+
+* By default, the JVM adds enough padding to the object to make its size a multiple of 8.
+
+SimpleLong object internals:
+ OFFSET  SIZE   TYPE DESCRIPTION                               VALUE
+      0    12        (object header)                           N/A
+     12     4        (alignment/padding gap)                  
+     16     8   long SimpleLong.state                          N/A
+Instance size: 24 bytes
+Space losses: 4 bytes internal + 0 bytes external = 4 bytes total
+
+

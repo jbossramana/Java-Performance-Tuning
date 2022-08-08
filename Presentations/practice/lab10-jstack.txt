@@ -1,0 +1,10 @@
+jstack (sun.tools.jstack)
+
+jstack is a utility that returns a complete dump of the various threads running in 
+an app, which you can then use to pinpoint the problem.
+
+Ex :
+
+jstack -l <process-id>
+
+

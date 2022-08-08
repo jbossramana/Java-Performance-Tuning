@@ -1,0 +1,38 @@
+java.util.function Package:
+
+The java.util.function package in Java 8 contains many builtin functional
+interfaces like-
+
+
+Predicate: 
+======
+
+The Predicate interface has an abstract method test which gives a Boolean 
+value as a result for the specified argument. Its prototype is
+
+public Predicate
+{
+   public boolean test(T  t);
+ }
+
+BinaryOperator: 
+==========
+
+The BinaryOperator interface has an abstract method apply which takes two 
+argument and returns a result of same type. Its prototype is
+
+public interface BinaryOperator 
+{
+     public T apply(T x, T y);
+}       
+
+Function: 
+======
+
+The Function interface has an abstract method apply which takes argument 
+of type T and  returns a result of type R. Its prototype is
+
+public interface Function 
+{
+   public R apply(T t);
+}

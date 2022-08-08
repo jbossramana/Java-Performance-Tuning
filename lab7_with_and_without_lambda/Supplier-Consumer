@@ -1,0 +1,25 @@
+Supplier
+---------
+
+Suppliers represent a function that accepts no arguments and produce a 
+result of some arbitrary type.
+
+Suppliers may reference constructor methods:
+
+Supplier referencing a constructor method
+
+Supplier<User> userSupplier = User::new;
+User user = userSupplier.get();
+
+
+Consumer
+-----------
+
+Consumers represent a function that accepts a single argument of an 
+arbitrary type and produce no result:
+
+Consumer<User> userConsumer = (u) -> System.out.println("Username: " 
+   + u.getUsername());
+userConsumer.accept(user);
+
+

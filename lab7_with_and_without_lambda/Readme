@@ -1,0 +1,41 @@
+
+Performance
+===========
+
+At runtime anonymous inner classes require class loading, memory allocation and object initialization and invocation 
+of a non-static method while lambda expression is pure compile time activity and don’t incur extra cost during runtime. 
+
+So performance of lambda expression is better as compare to anonymous inner classes.
+
+
+Lambda Expressions 
+==================
+
+It is basically express instances of functional interfaces (An interface with single abstract method is called 
+functional interface. An example is java.lang.Runnable). lambda expressions implement the only abstract
+function and therefore implement functional interfaces
+
+Lambda expressions  provide's the below functionalities:
+
+>> Enable to treat functionality as a method argument, or code as data.
+>> A function that can be created without belonging to any class.
+>> A lambda expression can be passed around as if it was an object and executed on demand.
+
+Syntax:
+
+lambda operator -> body
+
+where lambda operator can be:
+
+Zero parameter:
+
+() -> System.out.println("Zero parameter lambda");
+
+One parameter:
+
+(p) -> System.out.println("One parameter: " + p);
+
+Multiple parameters:
+
+(p1, p2) -> System.out.println("Multiple parameters: " + p1 + ", " + p2);
+

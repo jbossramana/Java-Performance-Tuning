@@ -1,0 +1,13 @@
+<project name="springstart" default="build-all">
+
+   <target name="build-all" depends="build-appcontext"/>
+  
+   <target name="build-appcontext">
+      <copy todir="bin">
+         <fileset dir="src">
+            <include name="**/ApplicationContext.xml"/>
+         </fileset>  
+      </copy>
+   </target>  
+
+</project>

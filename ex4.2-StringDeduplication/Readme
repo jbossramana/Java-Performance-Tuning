@@ -1,0 +1,31 @@
+StringDeduplication
+===================
+
+
+-XX:+UseG1GC -XX:+UseStringDeduplication -XX:+PrintStringDeduplicationStatistics
+
+4th execution of StringDeduplication. It took 35ms and edited 2,20,034 strings. 
+
+All were classified as "new", which means they have never been analyzed.
+
+In the above example, all strings were deduplicated, which left a total of 8.5MB of memory. 
+
+"Total Exec" information is for summary of all invocations
+
+
+-XX:+UseStringDeduplication -XX:+PrintStringDeduplicationStatistics
+
+Enables the deduplication of Java Strings. This command-line option and feature was introduced in JDK 8u20. String deduplication is disabled by default.
+
+
+-XX:+PrintStringDeduplicationStatistics
+
+Enables the printing of String deduplication statistics. The default value is disabled. This command-line option can be very helpful when you want to know if enabling deduplication will result in a significant savings in the amount of space
+in use by String objects in the Java heap. Hence, enabling this command-line option provides data that justifies whether there may be value in enabling
+-XX:+UseStringDeduplication.
+
+
+-XX:StringDeduplicationAgeThreshold
+
+Sets the String object age threshold when a String object is considered a candidate for deduplication. The default value is 3.
+More specifically, a String becomes a candidate for deduplication once a String object has been promoted to a G1 old region, or its age is higher than the deduplication age threshold.

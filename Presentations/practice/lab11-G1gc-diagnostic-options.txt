@@ -1,0 +1,12 @@
+
+1. Option : -XX:+PrintGCDetails
+-Xms512m -Xmx512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200  -XX:InitiatingHeapOccupancyPercent=45  -Xloggc:appgc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps
+
+2. Option: -XX:G1PrintRegionLivenessInfo (enabled with -XX:+UnlockDiagnosticVMOptions)
+
+G1PrintRegionLivenessInfo prints the live data information of each region during the Cleanup phase of the concurrent-marking cycle.
+
+3. Option: -XX:+G1PrintHeapRegions
+
+logs the regions related events when regions are committed, allocated into or are reclaimed.
+

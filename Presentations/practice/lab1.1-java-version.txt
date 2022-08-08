@@ -1,0 +1,20 @@
+1. To check the  default GC algorithm, issue the below command
+
+> java -XX:+PrintCommandLineFlags -XX:+PrintGCDetails -version
+
+2. Run the command with G1 collector
+
+> java -XX:+PrintCommandLineFlags -XX:+PrintGCDetails -XX:+UseG1GC -version
+ java -XX:+PrintCommandLineFlags -XX:+PrintGCDetails  -XX:+UseConcMarkSweepGC
+
+2. jvm flags 
+
+
+To view all the available flags that can be passed to the jvm, run the following command:
+
+java -XX:+PrintFlagsFinal
+
+
+jinfo -flag <flag-name> <pid>
+
+jinfo -flag MetaspaceSize 9312

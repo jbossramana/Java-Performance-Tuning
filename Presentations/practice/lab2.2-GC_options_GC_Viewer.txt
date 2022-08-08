@@ -1,0 +1,7 @@
+set JAVA_OPTS=%JAVA_OPTS% -Xms512m -Xmx512m -Xloggc:appgc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps
+set JAVA_OPTS=%JAVA_OPTS% -Xms512m -Xmx512m -XX:+UseSerialGC -Xloggc:appgc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps
+set JAVA_OPTS=%JAVA_OPTS% -Xms512m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m  -Xloggc:appgc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+UseConcMarkSweepGC 
+
+G1 GC :
+set JAVA_OPTS=%JAVA_OPTS% -Xms512m -Xmx512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200  -XX:InitiatingHeapOccupancyPercent=45  -Xloggc:appgc.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps
+

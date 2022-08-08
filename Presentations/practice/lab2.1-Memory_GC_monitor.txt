@@ -1,0 +1,16 @@
+jVisualvm:
+
+
+1. start jvisualvm
+
+2. select -> tools -> pluggin -> visualGC
+
+3. Select a java process -> open -> visualGC tab appears
+
+
+jconsole:
+
+
+Select Memory tab -> Monitor GC details
+
+

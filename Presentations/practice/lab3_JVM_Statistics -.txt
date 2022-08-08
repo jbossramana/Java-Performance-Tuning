@@ -1,0 +1,37 @@
+st[sun.tools.jstat]
+
+jstat - Java Virtual Machine Statistics Monitoring Tool
+
+
+The jstat utility can be used to gather a variety of different statistics. 
+jstat statistics are sorted into "options" that are specified at the 
+command-line as the first parameter. 
+
+
+1. display all available options
+
+>jstat -options
+
+
+2. Using the gcutil option
+
+This example attaches to process-id 21891 and takes 7 samples at 250 millisecond intervals and displays the output as specified by the -gcutil option.
+
+% jstat -gcutil 21891 250 7
+
+
+3. Including a time stamp for each sample
+
+This example attaches to process-id 21891 and takes 3 samples at 250 millisecond intervals. 
+The -t option is used to generate a time stamp for each sample in the first column.
+
+% jstat -gcoldcapacity -t 21891 250 3
+
+4. -printcompilation Option
+
+Column	Description
+Compiled	Number of compilation tasks performed by the most recently compiled method.
+Size	Number of bytes of bytecode of the most recently compiled method.
+Type	Compilation type of the most recently compiled method.
+Method	Class name and method name identifying the most recently compiled method. 
+       
