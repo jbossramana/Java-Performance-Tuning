@@ -1,0 +1,5 @@
+GC Algorithm 	           young            old 
+ParallelNewGC           Parallel	      Serial
+ParallelOldGC	           Serial        Parallel
+ParallelGC             Parallel        Parallel  (recomended)
+CMS/G1/ZGC            Parallel        CMS/G1/ZGC  (parallel & concurrent)
