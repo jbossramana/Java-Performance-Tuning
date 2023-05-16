@@ -1,0 +1,10 @@
+In Java, the card table is updated by the JVM (Java Virtual Machine) itself during the execution of a program. Specifically, the JVM's garbage collector is responsible for 
+updating the card table.
+
+The garbage collector periodically scans the heap and identifies objects that are no longer in use. When it identifies an object that is no longer in use, it updates the 
+corresponding entries in the card table to indicate that the object is now eligible for garbage collection.
+
+During the garbage collection process, the card table is also used to identify "dirty" cards, which are the ones that contain objects that have been modified since the last
+GC cycle. The garbage collector then only needs to examine the objects in these dirty cards to determine which ones are still in use and which ones can be freed.
+
+So, to sum up, the card table is maintained and updated by the JVM's garbage collector as part of the garbage collection process.
