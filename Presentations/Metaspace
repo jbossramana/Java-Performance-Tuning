@@ -1,0 +1,31 @@
+In Java, Metaspace is a part of the memory where the metadata of the loaded classes is stored. The metadata includes information such as:
+
+Class definitions: Metaspace stores the class definitions, which include the bytecodes, methods, fields, and other class-related information.
+
+Method definitions: Metaspace stores the method definitions, which include the method bytecode, parameter and return types, and other method-related information.
+
+Constant pool: Metaspace stores the constant pool, which contains the constant values used by the class, such as string literals and numerical constants.
+
+Annotations: Metaspace stores the annotations, which provide metadata about the class, such as information about its source code, author, and other attributes.
+
+Classloader information: Metaspace stores information about the classloader that loaded the class, including its parent classloaders and other relevant information.
+
+Virtual method tables: Metaspace stores the virtual method tables, which contain the addresses of the methods that can be called by a class instance.
+
+Reflection-related information: Metaspace stores reflection-related information, such as the names and types of fields and methods, and other metadata that is used by the reflection API.
+
+In general, Metaspace stores all the metadata that is needed by the Java Virtual Machine (JVM) to execute the loaded classes. The size of Metaspace can grow dynamically based on 
+the number of loaded classes and the size of their metadata, which helps to optimize memory usage in the JVM.
+
+
+
+Compressed Class Space is a part of the Metaspace in the JVM. In fact, the Compressed Class Space is a specialized portion of the Metaspace that is used to store the 
+compressed bytecode of loaded classes. The compressed bytecode is stored in a separate section of the Metaspace, which is called the Compressed Class Space.
+
+When a class is loaded, the JVM reads its bytecode and stores it in memory in the Metaspace. If the Compressed Class Space is enabled, the bytecode is compressed and stored 
+in the Compressed Class Space. The compressed bytecode is then decompressed and loaded into memory when it is needed.
+
+The Compressed Class Space is an important feature of the JVM that helps to reduce the memory footprint of the loaded classes and improve the performance of the application.
+By compressing the bytecode, the JVM can reduce the amount of memory needed to store the loaded classes, which can be particularly beneficial in memory-constrained environments.
+
+
