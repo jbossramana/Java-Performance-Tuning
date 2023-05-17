@@ -20,4 +20,19 @@ In this example, str1 and str2 are different objects, even though they contain t
 in the pool, which is the same as str2, so str2 == str3 is true.
 
 
+Difference between:
+
+String msg = "Good Day";
+String msg = "Good Day".intern();
+
+In Java, string literals declared in the source code (e.g., "Good Day") are automatically interned by the compiler. This means that the string literal is added to the 
+string pool, and when you assign it to a String variable, the variable references the interned string object from the pool.
+
+So, in the statement String name = "Good Day";, the string literal "Good Day" is interned by the compiler, and the name variable references the interned string object 
+from the string pool.
+
+However, if you were to explicitly call the intern() method like this: String name = "Good Day".intern();, it would enforce interning the string object at runtime, even
+if it's not a string literal. This can be useful if you have a dynamically created string that you want to ensure is interned.
+
+
 
