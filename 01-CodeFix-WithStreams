@@ -1,0 +1,79 @@
+package demo;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class CollectionIterationPerformanceTest {
+
+    public static void main(String[] args) {
+        int dataSize = 900000000; // Size of the list
+
+        // Generate a large list of random integers
+        List<Integer> numbers = new ArrayList<>(dataSize);
+        Random random = new Random();
+        for (int i = 0; i < dataSize; i++) {
+            numbers.add(random.nextInt(100));
+        }
+
+        // Measure performance of inefficient iteration
+        long startTime = System.currentTimeMillis();
+        int sum1 = sumListElementsInefficient(numbers);
+        long endTime = System.currentTimeMillis();
+        long inefficientDuration = endTime - startTime;
+
+        // Measure performance of efficient iteration
+        startTime = System.currentTimeMillis();
+        int sum2 = sumListElementsEfficient(numbers);
+        endTime = System.currentTimeMillis();
+        long efficientDuration = endTime - startTime;
+
+        System.out.println("Inefficient sum: " + sum1);
+        System.out.println("Efficient sum: " + sum2);
+        System.out.println("Inefficient Iteration Duration: " + inefficientDuration + " ms");
+        System.out.println("Efficient Iteration Duration: " + efficientDuration + " ms");
+    }
+
+    // Inefficient collection iteration using enhanced for-each loop
+    public static int sumListElementsInefficient(List<Integer> numbers) {
+        int sum = 0;
+        for (Integer number : numbers) {
+            sum += number;
+        }
+        return sum;
+    }
+
+    // Efficient collection iteration using the Stream API
+    public static int sumListElementsEfficient(List<Integer> numbers) {
+        return numbers.stream().mapToInt(Integer::intValue).sum();
+    }
+}
+
+
+
+Issues with Inefficient Collection Iteration:
+=============================================
+
+Performance Overhead: The enhanced for-each loop is convenient, but it may incur some performance overhead, as it involves creating an iterator and performing extra checks.
+
+Limited Parallelism: Inefficient iteration approaches may not take full advantage of Java's parallel processing capabilities, which can be crucial for optimizing performance in multi-core systems.
+
+
+Advantages of Efficient Collection Iteration:
+=============================================
+
+Improved Performance: The Stream API provides optimized iteration and parallel processing capabilities, making it more efficient for large data sets.
+
+Concise and Expressive: Stream operations are often more concise and expressive, enhancing code readability and maintainability.
+
+Parallelism: Streams can take advantage of multi-core processors by parallelizing the processing of elements.
+[ return numbers.parallelStream().mapToInt(Integer::intValue).sum();  ]
+
+In summary, inefficient collection iteration in Java can result in performance bottlenecks, especially when dealing with large collections. To address this, consider using the Stream API for more
+efficient and parallel-friendly iteration when working with collections in your Java code.
+
+=================================================================================================================================================
+Note :  In general, the efficiency of the Stream-based approach becomes more evident when dealing with larger datasets or more complex operations.
+It's designed to take advantage of parallelism and can offer better performance when utilized effectively. However, for smaller datasets, the overhead 
+introduced by the Stream API may offset any potential performance gains.
+=================================================================================================================================================
