@@ -1,0 +1,144 @@
+Example-1
+==========
+
+Inefficient List Initialization:
+=================================
+
+List<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Charlie");
+
+Explanation:
+
+The original code creates an empty ArrayList and then adds each name one by one. This involves multiple method calls and extra memory allocation.
+
+Efficient Code:
+===============
+
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+Improvement:
+
+The efficient code initializes the list directly using Arrays.asList, reducing the number of method calls and memory allocations.
+
+Example-2
+=========
+
+Inefficient List Iteration:
+===========================
+
+List<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names add("Charlie");
+
+for (String name : names) {
+    System.out.println(name);
+}
+
+
+Explanation:
+
+The original code iterates over an ArrayList, which is a common approach. However, it involves extra method calls and memory usage.
+
+
+Efficient Code:
+===============
+
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+for (String name : names) {
+    System.out.println(name);
+}
+
+
+Improvement:
+
+The efficient code uses an enhanced for-loop to iterate over a pre-initialized list, which is more concise and performs better.
+
+
+
+Example-3
+==========
+
+Inefficient Map Initialization:
+===============================
+
+Map<String, Integer> scores = new HashMap<>();
+scores.put("Alice", 90);
+scores.put("Bob", 85);
+scores.put("Charlie", 78);
+
+
+Explanation:
+
+The original code initializes an empty HashMap and then adds key-value pairs one by one, leading to multiple method calls and extra memory allocation.
+
+
+Efficient Code:
+===============
+
+Map<String, Integer> scores = Map.of("Alice", 90, "Bob", 85, "Charlie", 78);
+
+
+Improvement:
+
+The efficient code uses Map.of to initialize the map with key-value pairs directly, reducing method calls and memory usage.
+
+
+Example-5
+=========
+
+
+Use contains Efficiently:
+
+In some cases, using contains on a collection can be inefficient, especially for large collections. Here are some solutions:
+
+Inefficient Code:
+=================
+
+List<String> names = new ArrayList<>();
+// Add names to the list
+if (names.contains("Alice")) {
+    // Do something
+}
+
+
+Code Fix:
+=========
+
+Use a Set for faster lookups:
+
+Set<String> names = new HashSet<>();
+// Add names to the set
+if (names.contains("Alice")) {
+    // Do something
+}
+
+
+Use Java 8's anyMatch with streams for more expressive code:
+
+List<String> names = new ArrayList<>();
+// Add names to the list
+if (names.stream().anyMatch(name -> name.equals("Alice"))) {
+    // Do something
+}
+
+
+
+Prefer Appropriate Collection Types:
+
+Choose the right collection type based on your specific use case. Common collection types include List, Set, and Map. Here are some guidelines:
+
+Use List: When you need to maintain order and allow duplicates.
+Use Set: When you want to ensure uniqueness, and the order doesn't matter.
+Use Map: When you need key-value pairs and want to look up values quickly.
+
+
+
+
+
+
+
+
