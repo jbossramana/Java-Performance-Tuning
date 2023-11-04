@@ -1,0 +1,66 @@
+Logging is a crucial aspect of application development, and adhering to best practices for performance can help ensure that your logging doesn't introduce unnecessary overhead. Here are some logging best practices for performance:
+
+1. Use Proper Logging Levels:
+
+Choose the appropriate log level (e.g., DEBUG, INFO, WARN, ERROR) for each log message.
+Avoid excessive logging at lower levels in production, as it can impact performance.
+
+2. Avoid Expensive Logging Operations:
+
+Be cautious when performing expensive operations within log statements, as they can impact performance.
+Evaluate the cost of logging, especially when logging large data structures or performing I/O operations.
+
+3. Use Asynchronous Logging:
+
+Consider using asynchronous logging frameworks or libraries to offload the logging work from the main application thread. This can help improve application responsiveness.
+
+4. Log Message Formatting:
+
+Avoid complex string concatenation or formatting within log messages. Use placeholders or templates provided by the logging framework.
+Example (using SLF4J): logger.debug("Processing request for user: {}", userName);
+
+5. Log Only What's Necessary:
+
+Log only essential information. Avoid logging sensitive data, lengthy stack traces, or redundant information.
+Configure loggers to filter out irrelevant messages in production.
+
+5. Batching Log Entries:
+
+Consider batching log entries, especially in high-throughput applications, to reduce the frequency of disk writes.
+
+6. Logging Levels and Environment:
+
+Adjust log levels based on the environment. In development, more detailed logging may be useful, while in production, you might log less to improve performance.
+
+7. Log Rotation and Retention Policies:
+
+Implement log rotation and retention policies to manage log file size and prevent them from growing indefinitely.
+
+8. Conditional Logging:
+
+Use conditional statements to check whether a log statement should be executed. This can help avoid unnecessary log entries.
+
+if (logger.isDebugEnabled()) {
+    logger.debug("Debug message");
+}
+
+9. Avoid Excessive Logging in Exception Handlers:
+
+Be cautious when logging exceptions, especially in catch blocks. Logging the same exception multiple times can be counterproductive.
+
+10. Monitor Logging Performance:
+
+Use performance monitoring tools to assess the impact of logging on your application's performance.
+Adjust your logging strategy based on performance data.
+
+11. Choose Efficient Logging Libraries:
+
+Select efficient logging libraries that are known for their low overhead and good performance. Popular options include Logback, SLF4J, and Log4j2.
+
+12. Minimize File and Network I/O:
+
+Be mindful of the output destination for logs (e.g., files, databases, network endpoints). Minimize I/O operations, especially in high-throughput scenarios.
+Use Logger MDC (Mapped Diagnostic Context):
+
+Logger MDC allows you to add context information to log entries. It can be helpful for tracing and debugging without excessive logging.
+Remember that the specific best practices you should follow may vary depending on your application's architecture and requirements. It's important to strike a balance between providing valuable information for debugging and monitoring and not compromising performance.
