@@ -1,0 +1,50 @@
+Try-with-resources is a Java feature introduced in Java 7 (Java SE 7) that simplifies resource management by automatically closing resources like files, sockets, or database connections 
+when they are no longer needed. It is a block construct that ensures that the declared resources are closed at the end of the block, either normally or when an exception is thrown. 
+
+Try-with-resources is also known as the "Automatic Resource Management" feature.
+
+The primary benefits of using try-with-resources are:
+
+Automatic Resource Management: Try-with-resources automatically manages the opening and closing of resources, making it easier to write code that correctly handles resources.
+
+Cleaner and More Readable Code: It reduces the amount of boilerplate code required for resource management, leading to cleaner and more readable code.
+
+Here's the basic syntax of try-with-resources:
+
+try (ResourceType resource = new ResourceTypeInitialization) {
+    // Code that uses the resource
+} catch (ExceptionType e) {
+    // Exception handling
+}
+
+
+Here's an example using try-with-resources with a BufferedReader:
+
+try (BufferedReader reader = new BufferedReader(new FileReader("sample.txt"))) {
+    String line;
+    while ((line = reader.readLine()) != null) {
+        System.out.println(line);
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+
+Here's an example using try-with-resources with DataSource:
+
+
+try (java.sql.Connection connection = dataSource.getConnection()) {
+            // Perform database operations
+            // Example: execute a query
+            java.sql.Statement statement = connection.createStatement();
+            java.sql.ResultSet resultSet = statement.executeQuery("SELECT * FROM mytable");
+
+            // Process the query results
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                System.out.println("ID: " + id + ", Name: " + name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
