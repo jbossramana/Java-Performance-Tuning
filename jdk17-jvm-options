@@ -1,0 +1,65 @@
+
+To check the  default GC algorithm, issue the below command
+
+> java -XX:+PrintCommandLineFlags  -version
+
+> java -XX:+PrintCommandLineFlags  -XX:+UseParallelGC -version
+
+
+
+Enabling GC Logging:
+
+JDK 8: -Xloggc:gc_parallel.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps
+
+JDK 17: -Xlog:gc*:file=gc_parallel.log:time,level,tags:filecount=5,filesize=10M  -XX:+UseParallelGC 
+
+In JDK 17, you can use the -Xlog option to enable GC logging with details. The parameters file, time, level, and tags are used to specify the log file location
+and the details included in the logs. 
+
+The -Xlog option in Java is a flexible and powerful way to configure logging for various components, including garbage collection (GC), class loading, compiler, 
+and more. Its syntax is structured as follows:
+
+-Xlog:<tags>:<options>
+
+<tags>: Specifies which log entries should be captured. You can use wildcard characters and a combination of specific tags to filter the logs. Common tags for GC logging are 
+gc and gc*. You can add other tags to capture logs from different components.
+
+<options>: Specifies how the log entries are formatted, where they are written, and various other options. This part of the syntax can become quite complex, allowing you to 
+configure log file rotation, log level, timestamp, and more.
+
+Here's a breakdown of the syntax components with examples:
+
+Tags:
+
+gc: Captures garbage collection logs.
+gc*: Captures logs related to garbage collection and its subcomponents.
+Options:
+
+file=<file_path>: Specifies the log file location. Replace <file_path> with the desired file path, e.g., file=gc.log.
+time: Adds a timestamp to each log entry.
+level: Includes the log level (e.g., INFO, WARNING, ERROR) in the log entries.
+tags: Adds the tags to each log entry.
+filecount=<count>: Sets the maximum number of log files before rotation.
+filesize=<size>: Sets the maximum size for each log file before rotation.
+Here are some examples of how to use the -Xlog option:
+
+1. Basic GC logging to a file:
+-Xlog:gc:file=gc.log
+
+2. GC logging with a timestamp, log level, and tags:
+-Xlog:gc:time,level,tags:file=gc.log
+
+3. GC logging with file rotation (5 files, each up to 10MB):
+-Xlog:gc:file=gc.log:filecount=5,filesize=10M
+
+4. Capturing logs from multiple components (GC, class loading, and compiler):
+-Xlog:gc,classload,comp:time,level,tags:file=app.log
+
+
+
+
+
+
+
+
+
