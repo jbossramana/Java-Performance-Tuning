@@ -48,6 +48,52 @@ So, in summary, lambda expressions do not provide direct runtime efficiency in t
 efficient in terms of development and maintenance.
 
 
+Event Handling: 
+==============
+
+Anonymous inner classes are commonly used for event handling in graphical user interfaces. For example, when you need to respond to a button click, you can create 
+an anonymous inner class that implements the ActionListener interface.
+
+button.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        // Handle button click event
+    }
+});
+
+
+
+using lambda expression:
+
+button.addActionListener(e -> {
+    // Handle button click event
+});
+
+
+
+Thread Creation: 
+=================
+
+We can use anonymous inner classes to create and start threads with a simple implementation.
+
+Thread thread = new Thread(new Runnable() {
+    public void run() {
+        // Code to be executed in the thread
+    }
+});
+thread.start();
+
+
+using lambda expression:
+
+Thread thread = new Thread(() -> {
+    // Code to be executed in the thread
+});
+thread.start();
+
+
+
+
+
 
 
 
