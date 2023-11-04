@@ -1,0 +1,54 @@
+In Java, you can often replace anonymous inner classes with lambda expressions to make your code more concise and readable. Lambda expressions were introduced in Java 8 and provide
+a more streamlined way to define and use functional interfaces. Here's an example of how to replace an anonymous inner class with a lambda expression:
+
+Inefficient Code with Anonymous Inner Class:
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("This is an anonymous inner class.");
+            }
+        };
+        new Thread(runnable).start();
+    }
+}
+
+In the code above, we use an anonymous inner class to implement the Runnable interface.
+
+Code Fix with Lambda Expression:
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        Runnable runnable = () -> {
+            System.out.println("This is a lambda expression.");
+        };
+        new Thread(runnable).start();
+    }
+}
+
+
+In the code fix, we replace the anonymous inner class with a lambda expression. The lambda expression is more concise and easier to read.
+
+Lambda expressions are particularly useful when working with functional interfaces, which have a single abstract method (SAM). You can often replace anonymous 
+inner classes with lambda expressions for these interfaces, simplifying your code and making it more efficient.
+
+In the example provided, the lambda expression is not more efficient in terms of runtime performance compared to the anonymous inner class. The primary benefit of lambda 
+expressions is improved code readability and conciseness, rather than runtime efficiency.
+
+Lambda expressions are a syntactical feature that makes code more concise and easier to understand, but they do not inherently result in performance improvements. Both the 
+anonymous inner class and the lambda expression will have similar runtime performance in most cases.
+
+Lambda expressions are more efficient in terms of reducing boilerplate code and making your codebase cleaner, which can indirectly lead to better maintainability and understanding 
+of your code. They are particularly useful when dealing with functional interfaces (interfaces with a single abstract method), as they allow you to define the implementation of 
+that method more concisely.
+
+So, in summary, lambda expressions do not provide direct runtime efficiency in this context, but they enhance code readability and maintainability, making your codebase more
+efficient in terms of development and maintenance.
+
+
+
+
+
+
