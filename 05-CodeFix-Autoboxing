@@ -1,0 +1,35 @@
+Autoboxing and unboxing can sometimes lead to performance issues, especially in tight loops. Here's an example of code with autoboxing and a code fix to improve performance by avoiding autoboxing:
+
+Inefficient Code with Autoboxing:
+
+List<Integer> numbers = new ArrayList<>();
+// Add integer values to the list
+
+int sum = 0;
+for (Integer num : numbers) {
+    sum += num;  // Autoboxing from Integer to int
+}
+System.out.println("Sum: " + sum);
+
+
+
+In the code above, autoboxing occurs when you add Integer objects to the list and when you retrieve them in the loop, resulting in unnecessary overhead.
+
+Code Fix:
+
+Instead of using a List<Integer>, use an int[] array for storing primitive int values. This way, you avoid autoboxing and unboxing:
+
+
+int[] numbers = new int[];
+// Add integer values to the array
+
+int sum = 0;
+for (int num : numbers) {
+    sum += num;
+}
+System.out.println("Sum: " + sum);
+
+
+
+By using primitive arrays, you eliminate the need for autoboxing and improve the performance of your code, especially in scenarios where performance is critical.
+
