@@ -1,0 +1,19 @@
+[2023-11-04T19:02:06.300+0530][info][gc,start       ] GC(6) Pause Young (Allocation Failure)
+[2023-11-04T19:02:06.307+0530][info][gc,heap        ] GC(6) PSYoungGen: 61918K(69632K)->10625K(71680K) Eden: 61918K(61952K)->0K(60928K) From: 0K(7680K)->10625K(10752K)
+[2023-11-04T19:02:06.307+0530][info][gc,heap        ] GC(6) ParOldGen: 43394K(142336K)->94352K(142336K)
+[2023-11-04T19:02:06.307+0530][info][gc,metaspace   ] GC(6) Metaspace: 179K(384K)->179K(384K) NonClass: 170K(256K)->170K(256K) Class: 8K(128K)->8K(128K)
+[2023-11-04T19:02:06.307+0530][info][gc             ] GC(6) Pause Young (Allocation Failure) 102M->102M(209M) 6.645ms
+[2023-11-04T19:02:06.307+0530][info][gc,cpu         ] GC(6) User=0.00s Sys=0.00s Real=0.01s
+
+
+# It appears that this log entry is indeed a Young Generation (minor) garbage collection (Pause Young) performed by the Parallel Garbage Collector. However, it also 
+includes information about the Old Generation (ParOldGen) for reference.
+
+The reason for including Old Generation details in the log is to provide a more comprehensive view of the entire heap. While the primary focus of this log entry is on 
+the Young Generation collection (PSYoungGen), it's common to include information about the Old Generation because both generations are part of the overall garbage 
+collection process. This information can be useful for monitoring and understanding the state of the heap during and after garbage collection.
+
+In summary, even though it's a minor GC (Young Generation collection), the log entry may include details about both the Young Generation and Old Generation to provide 
+a more complete picture of the heap's memory management. It's a common practice in garbage collection logs to include this information for diagnostic and monitoring purposes.
+
+
