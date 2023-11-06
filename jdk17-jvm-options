@@ -13,6 +13,9 @@ JDK 8: -Xloggc:gc_parallel.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps
 
 JDK 17: -Xlog:gc*:file=gc_parallel.log:time,level,tags:filecount=5,filesize=10M  -XX:+UseParallelGC 
 
+Enable Logging with the JVM Unified Logging Framework:
+======================================================
+
 In JDK 17, you can use the -Xlog option to enable GC logging with details. The parameters file, time, level, and tags are used to specify the log file location
 and the details included in the logs. 
 
