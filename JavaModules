@@ -1,0 +1,84 @@
+
+1. Create a project with com.java4coding.example
+   The module-info.java should contain the below entries:
+      module com.java4coding.example {
+
+        exports com.java4coding.Example;
+
+            }
+
+   create a package with com.java4coding.Example
+   Add Example class with the below code:
+   package com.java4coding.Example;
+
+          public class Example {
+          
+                  public static void sayHello() {
+          
+                          System.out.println("Hello");
+          
+                  }
+          
+          }
+
+2. create a new project with com.java4coding.client
+   Add com.java4coding.example in the module path
+   Add the below entries in module-info.java
+          module com.java4coding.client {
+            	requires com.java4coding.example;
+           }
+   Create a package com.java4coding.client
+   Create a class ClientExample and add the below code
+            package com.java4coding.client;
+          
+          import com.java4coding.Example.Example;
+          
+          public class ClientExample {
+          
+          	public static void main(String args[])
+          	{
+          		Example example = new Example();
+          		example.sayHello();
+          		
+          	}
+          }
+    Run the ClientExample
+
+      
+   
+Placing your custom Java modules in the JDK's modules folder is not recommended. The modules folder in the JDK is intended for the core Java SE modules provided by the JDK itself, and it's a system location that should not be
+modified for your custom modules. Instead, you should follow standard practices for managing your custom modules in your application.
+
+Here's how you should manage your custom modules:
+
+Create a Modular JAR or JMOD File:
+
+One common approach is to package your custom modules as modular JAR files or JMOD files. Modular JAR files contain compiled code and module descriptors, making it easy to distribute and manage your modules.
+
+To create a modular JAR file, use the jar command with the --create option. Here's an example:
+
+bash
+Copy code
+jar --create --file mymodule.jar --module-version 1.0 -C <module-output-directory> .
+Replace <module-output-directory> with the directory containing the compiled module code and module-info.class.
+
+To create a JMOD file, use the jmod command. JMOD files are more suitable for distributing platform-specific artifacts.
+
+Use the --module-path Option:
+
+When you run your Java application, you can specify the module path using the --module-path option to include your custom modules. This allows your application to find and use your modules during runtime.
+
+bash
+Copy code
+java --module-path <path-to-your-module> -m <module-name>/<main-class>
+Replace <path-to-your-module> with the path to your modular JAR or JMOD file, and <module-name> and <main-class> with your module's information.
+
+Deployment and Packaging:
+
+Distribute your modular JAR files or JMOD files as part of your application package. When deploying your application, include these files in a location where your application can access them. For example, you might include them 
+in a lib folder of your application or a separate module repository.
+
+In summary, it's not recommended to place your custom modules in the JDK's modules folder. Instead, create modular JAR or JMOD files for your custom modules and manage them within your application's directory structure or as 
+part of your application deployment package.
+
+  
