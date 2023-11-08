@@ -1,0 +1,8 @@
+To find it in it’s default location on Windows, you can just check the contents of your TMP environment variable:
+
+> echo %TMP%
+C:\Users\Username\AppData\Local\Temp
+Look for a folder called hsperfdata_yourusername in this temp diretory and simply delete it.
+
+
+Relaunch JConsole and your applications that need monitoring, and you should now see your local processes.
