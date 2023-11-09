@@ -1,0 +1,120 @@
+public interface Calculator {
+
+	public float add(float a, float b);
+}
+
+
+public class Main {
+
+	public static float customAdd(float a, float b) {
+        return a + b;
+    }
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	
+		
+		
+		
+		Calculator cal = new Calculator()
+				{
+
+					@Override
+					public float add(float a, float b) {
+						// TODO Auto-generated method stub
+						return a+b;
+					}
+			
+				
+					
+	};
+
+	Calculator cal2 = (a,b) -> {return a+b;};
+	
+	Calculator cal3 = Float::sum;
+	
+	Calculator cal4 = Main::customAdd;
+	
+	System.out.println(cal.add(10, 20));;
+	System.out.println(cal2.add(30,40));
+	System.out.println(cal3.add(50,50));
+	System.out.println(cal4.add(90,50));
+}
+}
+
+
+The code you provided demonstrates the use of a functional interface called Calculator and various ways to implement its add method, both with anonymous classes, lambda expressions, and method references.
+
+Here's an explanation of the code:
+
+Calculator Interface:
+
+This is a functional interface with a single abstract method add(float a, float b) for performing addition.
+Main Class:
+
+The Main class contains the main method, which serves as the entry point for your Java program.
+customAdd Method:
+
+This is a static method defined within the Main class. It takes two float parameters and returns their sum. 
+This method will be used later as a method reference for the add operation.
+main Method:
+
+This is where the main logic of your program is defined.
+
+Anonymous Class (cal):
+
+You create an instance of the Calculator interface using an anonymous class. Inside the anonymous class, you implement 
+the add method by overriding it. In this implementation, you return the sum of the two input parameters a and b.
+Calculator cal = new Calculator() {...} creates an instance of the Calculator interface and implements the add method in-line.
+
+Lambda Expression (cal2):
+
+You create another instance of the Calculator interface using a lambda expression. The lambda expression (a, b) -> { return a + b; }
+implements the add method by returning the sum of the input parameters a and b.
+
+Method Reference (cal3):
+
+You create a Calculator instance cal3 using a method reference. Float::sum is a built-in method reference that performs the addition 
+of two float values. It is used as a method reference to implement the add method of the Calculator interface.
+
+Method Reference (cal4):
+
+You create another Calculator instance cal4 using a method reference, but this time, you reference your custom customAdd method from 
+the Main class, which also performs addition.
+
+Output:
+
+Finally, you call the add method on each of the Calculator instances and print the results to the console. This demonstrates that you can 
+use different ways to implement the add method while adhering to the Calculator functional interface's contract.
+
+This code provides examples of implementing the same add method of the Calculator interface using different techniques, including anonymous 
+classes, lambda expressions, and method references.
+
+
+The choice of which implementation approach is "best" depends on your specific requirements and coding style. Each of the methods you 
+demonstrated has its advantages and use cases:
+
+Anonymous Class:
+
+Useful when you need to create a one-time, custom implementation of the add method for a specific instance of the interface.
+Allows you to define the implementation inline, which can be helpful for small, specific use cases.
+Lambda Expression:
+
+Provides a concise and expressive way to implement the add method for functional interfaces.
+Best for cases where the implementation is simple and doesn't require a separate method definition.
+Method Reference:
+
+Offers a clean and concise way to reference an existing method that matches the functional interface's method signature.
+Useful when you have existing methods or built-in methods that can be reused.
+For most cases, lambda expressions or method references are preferred because they make the code more concise and readable. 
+Lambda expressions are especially useful for simple implementations. Method references are beneficial when you have existing
+methods that match the signature, making your code more modular and allowing for easier reuse.
+
+Ultimately, the "best" approach depends on your specific use case, the complexity of your implementation, and your coding style.
+If you have a simple, one-time implementation, a lambda expression or anonymous class might be sufficient. If you want to reuse 
+an existing method or create a more modular implementation, method references are a good choice.
+
+
+
+
