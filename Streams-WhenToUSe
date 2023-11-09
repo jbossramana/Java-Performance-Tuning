@@ -1,0 +1,98 @@
+With Stream:
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+        int sum = numbers.stream()
+                .filter(n -> n % 2 == 0)
+                .map(n -> n * n)
+                .reduce(0, Integer::sum);
+
+Without Stream :
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+int sum = 0;
+
+for (Integer n : numbers) {
+    if (n % 2 == 0) {
+        sum += n * n;
+    }
+}
+
+System.out.println(sum);
+
+
+Which one perform better?
+
+Using a simple for-each loop, as shown in the non-stream version of the code, can be more performant than using streams for this specific example. The performance difference may not be significant 
+for small collections, but it can become noticeable for larger collections.
+
+The reasons for better performance in the for-each loop version are as follows:
+
+Reduced Overhead: Streams introduce some overhead because they involve creating intermediate objects, lambda expressions, and method calls. In contrast, a for-each loop operates directly on the 
+underlying data without these additional abstractions.
+
+Reduced Object Instantiation: Streams often involve creating temporary objects (e.g., objects for lambda expressions) and performing additional method invocations. This can result in additional object 
+instantiation and garbage collection overhead.
+
+No Parallelism: Streams are designed to support parallel processing, which introduces synchronization and thread management overhead. In the for-each loop, you are not dealing with parallel processing, 
+so this overhead is eliminated.
+
+However, it's important to note that the difference in performance is most noticeable in situations with a large amount of data and complex operations. For small collections or simple operations, the 
+performance difference may not be significant, and the code readability and expressiveness offered by streams can make them a better choice.
+
+If performance is a critical concern for your specific use case, and you are working with very large datasets, you might consider using traditional loops for the most performance-critical parts of 
+your code and leverage streams when you need their expressiveness and readability.
+
+
+Streams are best in the below scenarios:
+
+Streams can outperform traditional loops in certain scenarios, especially when dealing with parallelism and when the operations on elements are inherently parallelizable or when the stream pipeline 
+is optimized for parallel execution. Here are some examples where streams can perform better:
+
+Parallel Processing: Streams are designed to take advantage of multiple processor cores, which can lead to significant performance improvements when processing large datasets. For example, when 
+performing complex and independent operations on each element, parallel streams can distribute the work across multiple threads for faster processing.
+
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+int sum = numbers.parallelStream()
+                .mapToInt(n -> n * n)
+                .sum();
+
+
+Concurrency: Streams can simplify concurrent data processing. For example, you can easily process data from multiple sources concurrently and then merge the results using parallel streams.
+
+List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4);
+List<Integer> numbers2 = Arrays.asList(5, 6, 7, 8);
+
+int sum = Stream.of(numbers1, numbers2)
+               .parallel()
+               .flatMap(List::stream)
+               .mapToInt(n -> n * n)
+               .sum();
+
+
+Code Readability: In cases where the code needs to be highly readable and maintainable, streams can often provide a cleaner and more concise solution, which can lead to better code quality and easier maintenance.
+
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
+
+List<String> filteredNames = names.stream()
+    .filter(name -> name.length() > 3)
+    .collect(Collectors.toList());
+
+
+Functional Composition: Streams allow for functional composition, where you can chain multiple operations together in a declarative style. This can lead to code that is easier to understand and reason about.
+
+List<String> words = Arrays.asList("hello", "world", "this", "is", "a", "test");
+
+String result = words.stream()
+    .filter(s -> s.length() > 3)
+    .map(String::toUpperCase)
+    .collect(Collectors.joining(" "));
+
+
+In summary, streams are particularly powerful and can perform better in situations where parallelism, concurrency, code readability, and functional composition are important factors. However, the specific 
+performance benefits may vary depending on the use case and the size of the data being processed. It's essential to consider your specific requirements and design your code accordingly.
+
+
+
+
+
+
