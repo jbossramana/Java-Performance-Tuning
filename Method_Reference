@@ -9,17 +9,34 @@ and the key difference lies in how they are used:
 System.out::println (Method Reference):
 
 This is a method reference, a feature introduced in Java 8.
+
 It is a shorthand way to refer to a method, and in this case, it refers to the println method 
 of the System.out object. It can be used as an argument to higher-order functions, such as those 
 in the Java Stream API or in functional programming, to specify what method should be called on 
 each element. It doesn't actually execute the println method; instead, it provides a reference 
 to it, which can be used later.
 
-Example:
+without method reference:
 
-list.forEach(System.out::println);
+List<String> list = Arrays.asList("apple", "banana", "cherry", "date");
 
-System.out.println (Method Invocation):
+list.forEach(element -> System.out.println(element));
+
+With Lamda expression:
+
+List<String> list = Arrays.asList("apple", "banana", "cherry", "date");
+
+list.forEach(element -> {
+    System.out.println(element);
+});
+
+
+With method reference:
+
+List<String> list = Arrays.asList("apple", "banana", "cherry", "date");
+list.forEach(System.out::println); 
+
+
 
 This is the standard way to call the println method of the System.out object to print output to the console.
 It immediately executes the println method with the provided arguments and prints the output to the console.
