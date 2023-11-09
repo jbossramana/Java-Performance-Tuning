@@ -1,0 +1,36 @@
+Method reference is a feature introduced in Java 8 that allows you to refer to methods or 
+constructors without invoking them, providing a more concise and readable syntax, especially 
+in situations where lambda expressions are used. Method references are particularly useful 
+when you want to pass a method as an argument or use it in a functional interface.
+
+System.out::println and System.out.println are two different ways of printing output in Java,
+and the key difference lies in how they are used:
+
+System.out::println (Method Reference):
+
+This is a method reference, a feature introduced in Java 8.
+It is a shorthand way to refer to a method, and in this case, it refers to the println method 
+of the System.out object. It can be used as an argument to higher-order functions, such as those 
+in the Java Stream API or in functional programming, to specify what method should be called on 
+each element. It doesn't actually execute the println method; instead, it provides a reference 
+to it, which can be used later.
+
+Example:
+
+list.forEach(System.out::println);
+
+System.out.println (Method Invocation):
+
+This is the standard way to call the println method of the System.out object to print output to the console.
+It immediately executes the println method with the provided arguments and prints the output to the console.
+Example:
+
+System.out.println("Hello, World!");
+In summary, System.out::println is a method reference used for deferred execution, and System.out.println 
+is the standard method invocation used for immediate execution. The choice between them depends on whether 
+you want to specify the method reference to be executed later or you want to execute it immediately.
+
+
+
+
+
