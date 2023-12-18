@@ -36,14 +36,16 @@ Tags:
 
 gc: Captures garbage collection logs.
 gc*: Captures logs related to garbage collection and its subcomponents.
+
 Options:
 
 file=<file_path>: Specifies the log file location. Replace <file_path> with the desired file path, e.g., file=gc.log.
 time: Adds a timestamp to each log entry.
 level: Includes the log level (e.g., INFO, WARNING, ERROR) in the log entries.
 tags: Adds the tags to each log entry.
-filecount=<count>: Sets the maximum number of log files before rotation.
-filesize=<size>: Sets the maximum size for each log file before rotation.
+      filecount=<count>: Sets the maximum number of log files before rotation.
+      filesize=<size>: Sets the maximum size for each log file before rotation.
+
 Here are some examples of how to use the -Xlog option:
 
 1. Basic GC logging to a file:
