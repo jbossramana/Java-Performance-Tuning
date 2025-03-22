@@ -1,0 +1,72 @@
+Before code fix:
+================
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MemoryLeakDemo {
+    private static final Map<Integer, String> memoryLeakMap = new HashMap<>();
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Starting Memory Leak Demo...");
+
+        int counter = 0;
+        while (true) {
+            memoryLeakMap.put(counter, "Memory Leak Test " + counter);
+            counter++;
+
+            // Print status every 100,000 entries
+            if (counter % 100000 == 0) {
+                System.out.println("Added " + counter + " entries to HashMap.");
+            }
+
+            // Simulate a delay to keep the process running
+            Thread.sleep(10);
+        }
+    }
+}
+
+
+After code fix:
+===============
+
+
+import java.util.Map;
+import java.util.WeakHashMap;
+
+public class MemoryLeakFix {
+    private static final Map<Integer, String> weakMap = new WeakHashMap<>();
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Starting Memory Leak Fixed Demo...");
+
+        int counter = 0;
+        while (true) {
+            weakMap.put(counter, "Memory Leak Test " + counter);
+            counter++;
+
+            if (counter % 100000 == 0) {
+                System.out.println("Added " + counter + " entries to WeakHashMap.");
+            }
+
+            Thread.sleep(10);
+        }
+    }
+}
+
+
+Note : Now, if you run this modified program and analyze the heap dump, you’ll notice that memory usage does not keep increasing since WeakHashMap allows entries to be garbage collected.
+
+
+Key Points About Weak Object Collection:
+========================================
+
+Weak objects are collected when there are no strong references to them.
+
+They are removed during the next GC cycle, whether it's Minor GC, Major GC, or Full GC, depending on when the GC decides to process weak references.
+
+Weak references are processed after the normal GC cycle, in a special reference-processing phase.
+
+Note : Weak references usually survive Minor GC.
+
+
