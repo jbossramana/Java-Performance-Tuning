@@ -61,6 +61,11 @@ Here are some examples of how to use the -Xlog option:
 -Xlog:gc,classload,comp:time,level,tags:file=app.log
 
 
+StringDedulication logs:
+========================
+
+-XX:+UseStringDeduplication -Xlog:stringdedup*=debug:file=string-dup-logfile.log -Xlog:gc:string-dup-logfile.log
+
 
 
 
