@@ -1,0 +1,55 @@
+Observe SQL Logs
+================
+
+
+>>>>  N+1 Problem
+
+You will see:
+
+select * from customers;
+
+select * from orders where customer_id=?;
+select * from orders where customer_id=?;
+select * from orders where customer_id=?;
+
+Multiple queries.
+
+
+>>>>  Batch Fetching
+
+Instead of many queries:
+
+select * from orders
+where customer_id in (?, ?, ?, ?, ?)
+
+Efficient batching.
+
+
+>>>> FETCH JOIN Optimization
+
+You will see:
+
+select distinct c.*, o.*
+from customers c
+left join orders o
+on c.id=o.customer_id;
+
+Single optimized query.
+
+>>>> DTO Projection
+
+Only required columns fetched:
+
+select c.name, count(o.id)
+from customers c
+left join orders o
+group by c.name;
+
+
+
+Technique					Benefit
+LAZY loading			Avoid unnecessary data
+FETCH JOIN				Fix N+1
+DTO Projection			Less memory
+Batch Fetching			Reduce SQL count
+

@@ -1,0 +1,27 @@
+-verbose:gc
+
+
+**
+
+jinfo -flag UseAdaptiveSizePolicy <process-id>
+
+**
+
+jinfo -flag NewRatio <process-id>
+
+-XX:NewRatio=1  
+
+**
+
+jinfo -flag SurvivorRatio <process-id>
+
+-Xmx20m -XX:SurvivorRatio=5
+
+**
+
+jinfo -flag MaxTenuringThreshold <process-id>
+
+-XX:MaxTenuringThreashold=n
+
+
+

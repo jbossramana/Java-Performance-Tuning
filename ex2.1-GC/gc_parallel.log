@@ -1,0 +1,43 @@
+[2026-05-08T19:24:08.007+0530][0.015s][info][gc,init] CardTable entry size: 512
+[2026-05-08T19:24:08.007+0530][0.015s][info][gc     ] Using Parallel
+[2026-05-08T19:24:08.010+0530][0.018s][info][gc,init] Version: 21.0.10+8-LTS-217 (release)
+[2026-05-08T19:24:08.010+0530][0.019s][info][gc,init] CPUs: 4 total, 4 available
+[2026-05-08T19:24:08.010+0530][0.019s][info][gc,init] Memory: 8191M
+[2026-05-08T19:24:08.010+0530][0.019s][info][gc,init] Large Page Support: Disabled
+[2026-05-08T19:24:08.010+0530][0.019s][info][gc,init] NUMA Support: Disabled
+[2026-05-08T19:24:08.010+0530][0.019s][info][gc,init] Compressed Oops: Enabled (32-bit)
+[2026-05-08T19:24:08.011+0530][0.019s][info][gc,init] Alignments: Space 512K, Generation 512K, Heap 2M
+[2026-05-08T19:24:08.011+0530][0.019s][info][gc,init] Heap Min Capacity: 500M
+[2026-05-08T19:24:08.011+0530][0.019s][info][gc,init] Heap Initial Capacity: 500M
+[2026-05-08T19:24:08.011+0530][0.019s][info][gc,init] Heap Max Capacity: 500M
+[2026-05-08T19:24:08.011+0530][0.019s][info][gc,init] Pre-touch: Disabled
+[2026-05-08T19:24:08.011+0530][0.019s][info][gc,init] Parallel Workers: 4
+[2026-05-08T19:24:08.024+0530][0.032s][info][gc,metaspace] CDS archive(s) mapped at: [0x000001c79a000000-0x000001c79ac90000-0x000001c79ac90000), size 13172736, SharedBaseAddress: 0x000001c79a000000, ArchiveRelocationMode: 1.
+[2026-05-08T19:24:08.024+0530][0.032s][info][gc,metaspace] Compressed class space mapped at: 0x000001c79b000000-0x000001c7db000000, reserved size: 1073741824
+[2026-05-08T19:24:08.024+0530][0.032s][info][gc,metaspace] Narrow klass base: 0x000001c79a000000, Narrow klass shift: 0, Narrow klass range: 0x100000000
+[2026-05-08T19:24:08.331+0530][0.339s][info][gc,start    ] GC(0) Pause Young (Allocation Failure)
+[2026-05-08T19:24:08.487+0530][0.496s][info][gc,heap     ] GC(0) PSYoungGen: 128512K(149504K)->20978K(149504K) Eden: 128512K(128512K)->0K(128512K) From: 0K(20992K)->20978K(20992K)
+[2026-05-08T19:24:08.487+0530][0.496s][info][gc,heap     ] GC(0) ParOldGen: 0K(341504K)->75912K(341504K)
+[2026-05-08T19:24:08.487+0530][0.496s][info][gc,metaspace] GC(0) Metaspace: 170K(384K)->170K(384K) NonClass: 163K(256K)->163K(256K) Class: 6K(128K)->6K(128K)
+[2026-05-08T19:24:08.487+0530][0.496s][info][gc          ] GC(0) Pause Young (Allocation Failure) 125M->94M(479M) 156.710ms
+[2026-05-08T19:24:08.487+0530][0.496s][info][gc,cpu      ] GC(0) User=0.50s Sys=0.08s Real=0.16s
+[2026-05-08T19:24:08.557+0530][0.565s][info][gc,start    ] GC(1) Pause Young (Allocation Failure)
+[2026-05-08T19:24:08.766+0530][0.775s][info][gc,heap     ] GC(1) PSYoungGen: 135284K(149504K)->20971K(149504K) Eden: 114306K(128512K)->0K(128512K) From: 20978K(20992K)->20971K(20992K)
+[2026-05-08T19:24:08.766+0530][0.775s][info][gc,heap     ] GC(1) ParOldGen: 75912K(341504K)->182992K(341504K)
+[2026-05-08T19:24:08.766+0530][0.775s][info][gc,metaspace] GC(1) Metaspace: 170K(384K)->170K(384K) NonClass: 163K(256K)->163K(256K) Class: 6K(128K)->6K(128K)
+[2026-05-08T19:24:08.767+0530][0.775s][info][gc          ] GC(1) Pause Young (Allocation Failure) 206M->199M(479M) 209.594ms
+[2026-05-08T19:24:08.767+0530][0.775s][info][gc,cpu      ] GC(1) User=0.67s Sys=0.09s Real=0.21s
+[2026-05-08T19:24:08.813+0530][0.821s][info][gc,start    ] GC(2) Pause Young (Allocation Failure)
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc,heap     ] GC(2) PSYoungGen: 133859K(149504K)->20984K(149504K) Eden: 112888K(128512K)->0K(128512K) From: 20971K(20992K)->20984K(20992K)
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc,heap     ] GC(2) ParOldGen: 182992K(341504K)->284728K(341504K)
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc,metaspace] GC(2) Metaspace: 170K(384K)->170K(384K) NonClass: 163K(256K)->163K(256K) Class: 6K(128K)->6K(128K)
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc          ] GC(2) Pause Young (Allocation Failure) 309M->298M(479M) 210.018ms
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc,cpu      ] GC(2) User=0.80s Sys=0.02s Real=0.21s
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc,start    ] GC(3) Pause Full (Ergonomics)
+[2026-05-08T19:24:09.023+0530][1.031s][info][gc,phases,start] GC(3) Marking Phase
+[2026-05-08T19:24:09.768+0530][1.777s][info][gc,phases      ] GC(3) Marking Phase 745.927ms
+[2026-05-08T19:24:09.768+0530][1.777s][info][gc,phases,start] GC(3) Summary Phase
+[2026-05-08T19:24:09.768+0530][1.777s][info][gc,phases      ] GC(3) Summary Phase 0.071ms
+[2026-05-08T19:24:09.768+0530][1.777s][info][gc,phases,start] GC(3) Adjust Roots
+[2026-05-08T19:24:09.770+0530][1.778s][info][gc,phases      ] GC(3) Adjust Roots 0.517ms
+[2026-05-08T19:24:09.770+0530][1.778s][info][gc,phases,start] GC(3) Compaction Phase

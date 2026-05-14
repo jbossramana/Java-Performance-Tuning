@@ -1,0 +1,45 @@
+Sample.java
+
+Object created inside a method : When a method is called it goes inside the stack frame. When the method
+is popped from the stack, all its members dies and if some objects were created inside it then these 
+objects becomes unreachable or anonymous after method execution and thus becomes eligible for garbage collection
+
+Sample2.java
+
+Reassigning the reference variable: When reference id of one object is referenced to reference id of some 
+other object then the previous object has no any longer reference to it and becomes unreachable and thus 
+becomes eligible for garbage collection.
+
+Sample3.java
+
+Nullifying the reference variable : When all the reference variables of an object are changed to NULL, 
+it becomes unreachable and thus becomes eligible for garbage collection.
+
+
+-verbose:gc
+
+
+**
+
+jinfo -flag UseAdaptiveSizePolicy <process-id>
+
+**
+
+jinfo -flag NewRatio <process-id>
+
+-XX:NewRatio=1  
+
+**
+
+jinfo -flag SurvivorRatio <process-id>
+
+-Xmx20m -XX:SurvivorRatio=5
+
+**
+
+jinfo -flag MaxTenuringThreshold <process-id>
+
+-XX:MaxTenuringThreashold=n
+
+
+

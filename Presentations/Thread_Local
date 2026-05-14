@@ -1,0 +1,58 @@
+In Java, thread-local variables are not stored on the thread's stack memory. Instead, thread-local variables are stored in a separate data structure called the
+"ThreadLocalMap", which is stored in the thread's "Thread" object.
+
+The "ThreadLocalMap" data structure is a hash table that maps each "ThreadLocal" object to its corresponding value for the current thread. When a thread accesses a
+thread-local variable, the thread looks up the variable's value in the "ThreadLocalMap" associated with the thread.
+
+So while thread-local variables are not stored on the thread's stack memory, they are still associated with the thread and are only accessible by the thread that set 
+them.
+
+thread-local variables are stored in the heap memory. When a thread-local variable is created, the object that represents the variable is allocated on the heap, just 
+like any other object in Java.
+
+Each thread that accesses the thread-local variable has its own copy of the variable's value, which is stored in the "ThreadLocalMap" data structure that is associated 
+with the thread.
+
+
+In a banking application, there may be a requirement to store a user's account balance in a thread-safe manner. One way to achieve this is to use a thread-local variable to
+store the account balance for each thread that accesses the account.
+
+For example, consider the following code:
+
+public class AccountService {
+    private ThreadLocal<Double> accountBalance = new ThreadLocal<>();
+    
+    public void deposit(double amount) {
+        Double balance = accountBalance.get();
+        if (balance == null) {
+            balance = 0.0;
+        }
+        balance += amount;
+        accountBalance.set(balance);
+    }
+    
+    public double getBalance() {
+        Double balance = accountBalance.get();
+        if (balance == null) {
+            return 0.0;
+        }
+        return balance;
+    }
+}
+
+
+In this code, the AccountService class has a ThreadLocal<Double> variable called accountBalance. This variable stores the account balance for each thread that accesses the account.
+
+When a deposit is made, the deposit method first gets the current balance from the thread-local variable using accountBalance.get(). If there is no balance stored for the current 
+thread (i.e. the balance is null), it sets the balance to 0.0.
+
+Next, the deposit amount is added to the balance, and the updated balance is stored back in the thread-local variable using accountBalance.set(balance).
+
+When the account balance is requested using getBalance(), the current balance for the current thread is retrieved using accountBalance.get(). If there is no balance stored for 
+the current thread, the method returns 0.0.
+
+Using a thread-local variable to store the account balance ensures that each thread that accesses the account has its own copy of the balance, and that the balance is thread-safe. 
+This allows multiple threads to deposit and withdraw from the same account without interfering with each other's balances.
+
+
+

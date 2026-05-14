@@ -1,0 +1,81 @@
+
+
+Mixed GCs
+---------
+
+In the Garbage-First Garbage Collector (G1GC) in Java, mixed garbage collections (Mixed GCs) are triggered when certain conditions are met. 
+The Mixed GC phase is responsible for reclaiming memory from both the young and old regions in the G1 heap.
+
+The exact conditions for starting a Mixed GC can vary based on the specific JVM version and G1GC configuration. However, here are some common 
+scenarios that can trigger a Mixed GC:
+
+Heap Region Occupancy: When the occupancy (percentage of live objects) in a region reaches a certain threshold, the region becomes a candidate for Mixed GC.
+By default, this threshold is set to 45%.
+
+Evacuation Failure: If a young GC (minor GC) cannot evacuate all the surviving objects from a region to another region due to space constraints, the region is 
+considered "humongous" and is a candidate for Mixed GC.
+
+System or Application Initiating GC: Mixed GC can also be triggered by explicit requests for a GC, either by the system or the application, when the JVM determines
+it is necessary based on factors like memory pressure or heap usage patterns.
+
+It's important to note that the G1GC algorithm and triggering conditions can be adjusted and optimized by JVM options and flags. The defaults and thresholds may vary 
+between different JVM implementations and versions.
+
+During a Mixed GC, G1GC collects both young and old regions concurrently, evacuating live objects, and reclaiming unused memory. Mixed GCs aim to balance garbage 
+collection work across multiple cycles, reducing long pauses associated with full GCs and allowing the application to make progress with lower latency.
+
+
+
+
+
+
+Full GC (Allocation Failure
+===========================
+
+[Full GC (Allocation Failure) 8144M->4016M(8192M), 10.6192450 secs] [Eden: 0.0B(3072.0M)->0.0B(3072.0M) Survivors: 0.0B->0.0B Heap: 8144.0M(8192.0M)->4016.1M(8192.0M)], 
+[Metaspace: 83995K->83979K(1126400K)] [Times: user=15.73 sys=0.00, real=10.62 secs] 2019-01-25T00:25:40.277+0800: 399248.190: [GC concurrent-mark-abort] Heap garbage-first 
+heap total 8388608K, used 4268154K [0x00000005c0000000, 0x00000005c0802000, 0x00000007c0000000) region size 8192K, 20 young (163840K), 0 survivors (0K) Metaspace
+used 84034K, capacity 85146K, committed 86732K, reserved 1126400K
+class space used 8833K, capacity 9090K, committed 9420K, reserved 1048576K
+
+
+Solution:
+
+Here are the potential solutions to address this problem:
+1. Increase the number of concurrent marking threads by setting '-XX:ConcGCThreads' value. Increasing the concurrent marking threads will make garbage collection run fast.
+
+2. Force G1 to start marking phase earlier. This can be achieved by lowering '-XX:InitiatingHeapOccupancyPercent' value. Default value is 45. It means the G1 GC marking
+phase will begin only when heap usage reaches 45%. By lowering the value, the G1 GC marking phase will get triggered earlier so that Full GC can be avoided.
+
+3. Even though there is enough space in a heap, a Full GC can also occur due to lack of a contiguous set of space. This can happen because of a lot of humongous objects
+present in the memory. A potential solution to solve this problem is to increase the heap region size by using the option '-XX:G1HeapRegionSize' to decrease the amount of memory
+wasted by humongous objects.
+
+
+G1 Humongous Allocatio
+-----------------------
+
+29 sec 30 ms of GC pause time is triggered by 'G1 Humongous Allocation' event. Humongous allocations are allocations that are larger than 50% of the region size in G1. 
+Frequent humongous allocations can cause couple of performance issues:
+
+1. If the regions contain humongous objects, space between the last humongous object in the region and the end of the region will be unused. If there are multiple such humongous 
+objects, this unused space can cause the heap to become fragmented.
+2. Until Java 1.8u40 reclamation of humongous regions were only done during full GC events. Where as in the newer JVMs, clearing humongous objects are done in cleanup phase.
+
+Solution:
+You can increase the G1 region size so that allocations would not exceed 50% limit. By default region size is calculated during startup based on the heap size. It can be 
+overriden by specifying '-XX:G1HeapRegionSize' property. Region size must be between 1 and 32 megabytes and has to be a power of two. Note: Increasing region size is sensitive 
+change as it will reduce the number of regions. So before increasing new region size, do thorough testing.
+
+
+
+Reference:
+https://gceasy.io/my-gc-report.jsp?p=c2hhcmVkLzIwMjAvMDUvMjkvLS1nY19ib2kuemlwLS0xNS0xOS00OA==&channel=WEB&s=t
+
+GC Tool:
+https://gceasy.io
+
+
+
+
+

@@ -1,0 +1,6 @@
+Technique			Speed			Memory
+
+Unbuffered			Very slow		Low
+Buffered 8 KB		Fast			Low
+Buffered 64 KB		Very fast		Low
+readAllBytes		Fast			Very high

@@ -1,0 +1,14 @@
+jmap (sun.tools.jmap) -> Memory Map
+
+Sometimes, the problem you're dealing with is an object leak, such as an 
+ArrayList (which could hold thousands of objects) that just isn't getting 
+released when it should. Another problem that is more general would be 
+an expanding heap that never seems to shrink, despite active garbage collection.
+
+
+Ex :
+
+jmap -dump:file=heapDump.jmap <process-id>
+
+
+

@@ -1,0 +1,83 @@
+The jcmd Utility
+
+The jcmd utility is used to send diagnostic command requests to the JVM, where
+these requests are useful for controlling Java Flight Recordings, troubleshoot, 
+and diagnose JVM and Java Applications. 
+
+It must be used on the same machine where the JVM is running, 
+
+
+example :
+
+
+> jcmd
+5485 sun.tools.jcmd.JCmd
+2125 MyProgram
+ 
+> jcmd MyProgram help (or "jcmd 2125 help")
+2125:
+The following commands are available:
+JFR.stop
+JFR.start
+JFR.dump
+JFR.check
+VM.native_memory
+VM.check_commercial_features
+VM.unlock_commercial_features
+ManagementAgent.stop
+ManagementAgent.start_local
+ManagementAgent.start
+Thread.print
+GC.class_stats
+GC.class_histogram
+GC.heap_dump
+GC.run_finalization
+GC.run
+VM.uptime
+VM.flags
+VM.system_properties
+VM.command_line
+VM.version
+help
+ 
+> jcmd MyProgram help Thread.print
+2125:
+Thread.print
+Print all threads with stacktraces.
+
+
+
+
+Troubleshoot with jcmd Utility
+------------------------------
+
+The jcmd utility provides the following troubleshooting options:
+
+    Start a recording
+
+    For example, to start a 2-minute recording on the running Java process with the identifier 7060 and save it to myrecording.jfr in the current directory, use the following:
+
+    jcmd 7060 JFR.start name=MyRecording settings=profile delay=20s duration=2m filename=C:\TEMP\myrecording.jfr
+
+    Check a recording
+
+    The JFR.check diagnostic command checks a running recording. For example:
+
+    jcmd 7060 JFR.check
+
+    Stop a recording
+
+    The JFR.stop diagnostic command stops a running recording and has the option to discard the recording data. For example:
+
+    jcmd 7060 JFR.stop
+
+    Dump a recording
+
+    The JFR.dump diagnostic command stops a running recording and has the option to dump recordings to a file. For example:
+
+    jcmd 7060 JFR.dump name=MyRecording filename=C:\TEMP\myrecording.jfr
+
+Monitoring .jfr file
+--------------------
+
+Use JMC (Java Mission Control) -> part of jdk

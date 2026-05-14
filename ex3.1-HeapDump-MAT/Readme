@@ -1,0 +1,21 @@
+1. Run the demo with -Xmx10m   and -Xmx20m
+
+2. Now replace the below code in CustomerManager, onceagain run the demo.
+
+public Optional<Customer> getNextCustomer() {
+
+				synchronized(customers)
+				{
+				if(customers.size()>0)
+					return Optional.of(customers.remove(0));
+				}
+				return Optional.empty();
+	}	
+	
+	
+Eclipse MAT (Memory analyzer  Tool)
+-----------------------------------
+
+File -> Acquire Heap dump -> Select the java process
+Getting Started -> Leak Suspects Report -> Problem Suspect  1->  Select Details
+Analyse the "Shortest Paths To the Accumulation Point"

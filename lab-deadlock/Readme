@@ -1,0 +1,4 @@
+
+Deadlock describes a situation where two or more threads are blocked forever, waiting for each other. 
+
+A Java multithreaded program may suffer from the deadlock condition

@@ -1,0 +1,44 @@
+JIT Compilation Details with jstat
+----------------------------------
+
+Seeing the output of print compilation requires that the program be started with 
+the -XX:+PrintCompilation flag.
+
+If the program was started without that flag, you can get some limited visibility
+into the working of the compiler by using jstat.
+
+jstat has two options to provide information about the compiler. 
+
+The -compiler option supplies summary information about how many methods have been 
+compiled (here 5003 is the process id of the program to be inspected):
+
+% jstat -compiler 5003
+Compiled Failed Invalid   Time   FailedType FailedMethod
+     206      0       0     1.97          0
+
+
+Note this also lists the number of methods that failed to compile and the name 
+of the last method that failed to compile; if profiles or other information lead 
+you to suspect that a method is slow because it hasn’t been compiled, this is 
+an easy way to verify that hypothesis.
+
+Alternately, you can use the -printcompilation option to get information about 
+the last method that is compiled. Because jstat takes an optional argument 
+to repeat its operation, you can see over time which methods are being compiled. 
+
+In this example, jstat repeats the information for process id 5003 every second 
+(1000 milliseconds):
+
+% jstat -printcompilation 5003 1000
+Compiled  Size  Type Method
+     207     64    1 java/lang/CharacterDataLatin1 toUpperCase
+     208      5    1 java/math/BigDecimal$StringBuilderHelper getCharArray
+
+
+
+=================================================================
+>>  monitor from visualGC (VisualVM Plugging)
+
+>>  generate the log file, by passing the below options:
+-XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation
+

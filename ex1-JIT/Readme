@@ -1,0 +1,93 @@
+1. See JIT Compilation Activity
+
+-XX:+PrintCompilation
+
+Shows methods getting compiled by JIT.
+
+Example output:
+
+  120   3       java.lang.String::charAt (25 bytes)
+
+Meaning:
+
+compilation id
+optimization level
+method name
+
+2. Print Detailed Compilation Info
+
+-XX:+UnlockDiagnosticVMOptions
+-XX:+PrintInlining
+
+Shows:
+
+method inlining
+why methods were/weren’t inlined
+
+Very useful for performance tuning.
+
+3. Disable JIT Completely
+
+-Xint
+
+Runs in interpreted mode only.
+
+Useful for comparison.
+
+
+4. Force Compilation Only (No Interpreter)
+
+-Xcomp
+
+Everything compiled aggressively.
+
+Good for experimentation, not production.
+
+5. Mixed Mode
+
+-Xmixed
+
+Combination of interpreter + JIT.
+
+6. Default JVM Behavior
+
+-Xmixed
++ Tiered Compilation
+
+Default JVM behavior.
+
+7. Change Inline Threshold
+-XX:MaxInlineSize=50
+
+Controls max bytecode size for inlining.
+
+8. Observe Lock Optimizations
+
+-XX:+EliminateLocks
+
+JIT may remove unnecessary synchronization.
+
+9. Compile Only Specific Methods
+
+-XX:CompileCommand=compileonly,MyClass.myMethod
+
+Example:
+
+-XX:CompileCommand=compileonly,Test.sum
+
+10. Exclude Method from Compilation
+
+-XX:CompileCommand=exclude,MyClass.myMethod
+
+11. Code Cache Usage
+
+-XX:+PrintCodeCache
+
+JIT-generated machine code stored here.
+
+12. Restrict Compiler Threads
+-XX:CICompilerCount=2
+
+Controls number of JIT compiler threads.
+
+

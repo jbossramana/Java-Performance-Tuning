@@ -1,0 +1,38 @@
+In Java, the intern() method is used to place a String object in the internal pool of string literals. The internal pool is a storage area in the 
+Java Virtual Machine (JVM) where all unique string literals are stored.
+
+When you create a new String object in Java using the new keyword, a new object is created in memory, even if the same string value already exists in the pool. 
+However, if you call the intern() method on a string, Java checks if that string already exists in the internal pool. If it does, the existing string is returned, 
+and if not, a new entry is added to the pool and the new string is returned.
+
+Using the intern() method can be useful in situations where you have a large number of strings that need to be compared for equality, as it allows you to compare 
+them by reference rather than by value. This can lead to significant performance improvements in some cases.
+
+String str1 = new String("hello");
+String str2 = "hello";
+String str3 = str1.intern();
+
+System.out.println(str1 == str2);  // false
+System.out.println(str2 == str3);  // true
+
+
+In this example, str1 and str2 are different objects, even though they contain the same value. However, calling intern() on str1 returns a reference to the existing string
+in the pool, which is the same as str2, so str2 == str3 is true.
+
+
+Difference between:
+
+String msg = "Good Day";
+String msg = "Good Day".intern();
+
+In Java, string literals declared in the source code (e.g., "Good Day") are automatically interned by the compiler. This means that the string literal is added to the 
+string pool, and when you assign it to a String variable, the variable references the interned string object from the pool.
+
+So, in the statement String name = "Good Day";, the string literal "Good Day" is interned by the compiler, and the name variable references the interned string object 
+from the string pool.
+
+However, if you were to explicitly call the intern() method like this: String name = "Good Day".intern();, it would enforce interning the string object at runtime, even
+if it's not a string literal. This can be useful if you have a dynamically created string that you want to ensure is interned.
+
+
+

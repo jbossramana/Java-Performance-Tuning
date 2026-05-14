@@ -1,0 +1,13 @@
+jinfo
+
+One of the ways to run the jinfo (Java Configuration Info) tool is run it 
+against a Java process. The jps tool just mentioned can be used to retrieve
+the appropriate Java process ID.
+
+
+example :
+
+
+>jinfo <process-id>
+
+

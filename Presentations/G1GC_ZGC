@@ -1,0 +1,29 @@
+G1GC and ZGC are two different garbage collectors that are available in Java.
+
+G1GC (Garbage First Garbage Collector) is a concurrent, low-pause garbage collector that was introduced in Java 7. G1GC divides the heap into regions and collects the regions with
+the most garbage first. It uses multiple concurrent threads to perform garbage collection, which reduces pause times. G1GC is optimized for large heaps and can handle heaps up 
+to 4TB in size. G1GC can cause some overhead during garbage collection due to the need to scan multiple regions, but it generally provides good overall performance and low pause times.
+
+ZGC is a new garbage collector that was introduced in Java 11. ZGC is designed to provide extremely low pause times, even for very large heaps. ZGC is a fully concurrent garbage 
+collector that uses a technique called colored pointers to track object references, which allows it to perform garbage collection without stopping the application threads. ZGC also 
+supports heap sizes up to 16 exabytes, which makes it suitable for large-scale applications. ZGC is optimized for workloads that require low latency and high throughput, and it can 
+provide consistent and predictable pause times.
+
+Here are some key differences between G1GC and ZGC:
+
+Pause times: G1GC provides low pause times for most workloads, but it can still cause some overhead during garbage collection. ZGC is designed to provide extremely low pause times, 
+even for very large heaps, and it can perform garbage collection without stopping the application threads.
+
+Concurrent vs. stop-the-world: G1GC uses a combination of concurrent and stop-the-world garbage collection, whereas ZGC is fully concurrent and does not require any stop-the-world phases.
+
+Heap size: G1GC is optimized for large heaps and can handle heaps up to 4TB in size, whereas ZGC can support heap sizes up to 16 exabytes.
+
+Workload optimization: G1GC is optimized for workloads that have a balance of latency and throughput requirements, whereas ZGC is optimized for workloads that require low latency 
+and high throughput.
+
+Overall, G1GC and ZGC are both powerful garbage collectors that can provide excellent performance and low pause times for different types of workloads. The choice of which garbage 
+collector to use depends on the specific requirements of the application and the workload.
+
+
+-XX:+UnlockExperimentalVMOptions -XX:+UseZGC
+

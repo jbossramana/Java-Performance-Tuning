@@ -1,0 +1,31 @@
+The key difference between Anonymous class and Lambda expression is the usage of 'this' keyword. 
+In the anonymous classes, ‘this’ keyword resolves to anonymous class itself, whereas for lambda 
+expression ‘this’ keyword resolves to enclosing class where lambda expression is written.
+
+---
+
+Another difference between lambda expression and anonymous class is in the way these two are compiled.
+Java compiler compiles lambda expressions and convert them into private method of the class. 
+It uses invokedynamic instruction that was added in Java 7 to bind this method dynamically.
+
+//Anonymous class
+Runnable task1 = new Runnable(){
+ 
+    @Override
+    public void run(){
+        System.out.println("Task #1 is running");
+    }
+};
+ 
+
+ 
+Thread thread1 = new Thread(task1);
+thread1.start();
+
+------
+
+// Lambda Runnable
+Runnable task2 = () -> { System.out.println("Task #2 is running"); };
+ 
+// start the thread
+new Thread(task2).start();

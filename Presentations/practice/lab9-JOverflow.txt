@@ -1,0 +1,3 @@
+JMC plug-ins
+
+JMC offers a few plugins. You can install them via Help -> Install New Software menu

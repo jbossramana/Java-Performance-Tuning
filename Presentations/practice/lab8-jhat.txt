@@ -1,0 +1,11 @@
+jhat (com.sun.tools.hat.Main)
+Once you've dumped the heap into a binary file, you can use jhat to analyze 
+the binary heap dump file. jhat creates an HTTP/HTML server that can be surfed 
+in a browser, giving an object-by-object view of the heap, frozen in time. 
+
+example:
+
+>jhat heapDump.jmap
+
+By default, it will start http server on port 7000.
+Then we will go to http://localhost:7000/

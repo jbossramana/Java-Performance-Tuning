@@ -1,0 +1,96 @@
+From command-prompt:
+-XX:+PrintStringTableStatistics
+-XX:+PrintSymbolTableStatistics
+Note : These Strings are loaded by the core java
+ 
+Try with application:
+-XX:+PrintStringTableStatistics 
+
+Now, Try with:
+-XX:+PrintStringTableStatistics -XX:StringTableSize=120121
+
+
+
+
+1. SymbolTable
+
+The SymbolTable stores JVM internal symbols such as:
+
+Class names
+Method names
+Field names
+JVM identifiers
+
+
+2. Shared Symbol Table
+
+CDS (Class Data Sharing)
+
+JVM shares preloaded symbols across JVM instances to improve startup performance.
+
+Contains many standard JDK classes and symbols.
+
+
+3. StringTable
+
+The StringTable stores interned Java strings.
+
+
+Performance Interpretation
+==========================
+
+Your JVM statistics look healthy.
+
+Good signs:
+
+Very low bucket occupancy
+Very low collisions
+Small maximum bucket size
+Good hash distribution
+
+This means:
+
+Fast symbol lookup
+Fast string lookup
+No sign of hash table overload
+
+
+Why JVM Uses These Tables
+==========================
+
+Without them:
+
+Duplicate strings waste memory
+Class loading becomes slower
+Method lookup slower
+
+These tables improve:
+
+Memory efficiency
+JVM startup
+Runtime performance
+Garbage collection efficiency
+
+
+When Problems Happen
+====================
+
+If tables become overloaded:
+
+Large collisions
+Slow lookups
+Increased GC pressure
+
+Symptoms:
+
+Maximum bucket size very high
+Average bucket size large
+
+Sometimes JVM tuning needed:
+
+-XX:StringTableSize=1000003
+
+
+
+
+

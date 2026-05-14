@@ -1,0 +1,9 @@
+1. Reading the compiler's mind
+
+-XX:+UnlockDiagnosticVMOptions -XX:+LogCompilation -XX:+PrintInlining -XX:+PrintCompilation
+
+
+2. Print Assembly:
+
+-XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly
+
